@@ -80,13 +80,13 @@ server <- function(input, output) {
    
    output$distPlot <- renderPlot({
     
-         c0=   c(sample(seq(0,100,0.0001),1000000))
-     c0=matrix(ncol = input$NA1,nrow = input$eventos,data = c0)
+         c0<-   c(sample(seq(0,100,0.0001),1000000))
+     c0<-matrix(ncol = input$NA1,nrow = input$eventos,data = c0)
   
      set.seed(1*input$simulacion)
-     f=   c(sample(seq(0,100,0.0001),1000000))
+     f<-   c(sample(seq(0,100,0.0001),1000000))
    
-     f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+     f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
    
       matplot(c0,type = "l",main="Todos los competidores")
   matlines(f[,1],lwd = 2)
@@ -98,28 +98,28 @@ server <- function(input, output) {
      
 
      set.seed(1*input$simulacion)
-     f=   c(sample(seq(0,100,0.0001),1000000))
-     f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+     f<-   c(sample(seq(0,100,0.0001),1000000))
+     f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
     
      if (input$Dist.pp=="precipitación"){
        
-       f= read.csv("dataSaul2018.csv")
+       f<- read.csv("dataSaul2018.csv")
        
-       f=data.frame( f[1:input$eventos,3],f[1:input$eventos,3])*1000000
+       f<-data.frame( f[1:input$eventos,3],f[1:input$eventos,3])*1000000
        
      }
      
       if (input$Dist.pp=="constante"){
-       f=abs(rnorm(input$eventos,50, input$varprec))
+       f<-abs(rnorm(input$eventos,50, input$varprec))
    
-       f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+       f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
 
      }
      
      if (input$Dist.pp=="normal"){
-       f=abs(rnorm(input$eventos,50, input$varprec))
+       f<-abs(rnorm(input$eventos,50, input$varprec))
        
-       f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+       f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
       
        
      }
@@ -129,11 +129,11 @@ server <- function(input, output) {
        c1=matrix(ncol = input$NA1,nrow = input$eventos,data = c1)
        
        c1[,order(cor(c1,f[,1]))]
-       c556= c1[,1:3]
+       c556<- c1[,1:3]
        matplot(c556,type = "l",main="Ganadores en grupo")
        matlines(f,lwd = 2)
        output$tab<- renderText({
-     t=c(cor(c556[,1],f[,1]),cor(c556[,2],f[,1]),cor(c556[,3],f[,1]))
+     t<-c(cor(c556[,1],f[,1]),cor(c556[,2],f[,1]),cor(c556[,3],f[,1]))
          t
        })
        if (cor(c556[,1],c556[,2])> input$var  & cor(c556[,3],c556[,2]) & cor(c556[,1],f[,1]) > input$var){
@@ -150,21 +150,21 @@ server <- function(input, output) {
      
      
      set.seed(1*input$simulacion)
-     f=   c(sample(seq(0,100,0.0001),1000000))
-     f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+     f<-   c(sample(seq(0,100,0.0001),1000000))
+     f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
      
      if (input$Dist.pp=="precipitación"){
        
-       f= read.csv("dataSaul2018.csv")
+       f<- read.csv("dataSaul2018.csv")
        
-       f=data.frame( f[1:input$eventos,3],f[1:input$eventos,3])*1000000
+       f<-data.frame( f[1:input$eventos,3],f[1:input$eventos,3])*1000000
        
      }
      
      if (input$Dist.pp=="constante"){
-       f=abs(rnorm(input$eventos,50, input$varprec))
+       f<-abs(rnorm(input$eventos,50, input$varprec))
        
-       f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+       f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
        
        
        
@@ -172,19 +172,19 @@ server <- function(input, output) {
      }
      
      if (input$Dist.pp=="normal"){
-       f=abs(rnorm(input$eventos,50, input$varprec))
+       f<-abs(rnorm(input$eventos,50, input$varprec))
        
-       f=matrix(ncol = input$NA2,nrow = input$eventos,data = f)
+       f<-matrix(ncol = input$NA2,nrow = input$eventos,data = f)
        
        
      }
      repeat {
        
-       c1=   c(sample(seq(0,100,0.0001),1000000))
-       c1=matrix(ncol = input$NA1,nrow = input$eventos,data = c1)
+       c1<-  c(sample(seq(0,100,0.0001),1000000))
+       c1<-matrix(ncol = input$NA1,nrow = input$eventos,data = c1)
        
        c1[,order(cor(c1,f[,1]))]
-       c556= c1[,1]
+       c556<- c1[,1]
        
   
         if (cor(c556,f[,1])> input$Imp.cor)  break
